@@ -1,0 +1,59 @@
+<a routerLink="/t" class="btn btn-info mt-4">назад</a>
+
+      <div class="row mt-4">
+          <div class="col-sm-12 col-lg-4" align="left">
+            <a [routerLink]="'/t/'+prevItem.id" class="btn btn-info">← ({{prevItem.id}}) ({{prevItem.symbol}}) {{prevItem.title}}</a>
+          </div>
+            <div class="col-lg-4"></div>
+            <div class="col-sm-12 col-lg-4" align="right">
+                <a [routerLink]="'/t/'+nextItem.id" class="btn btn-info">({{nextItem.id}}) ({{nextItem.symbol}}) {{nextItem.title}} →</a>
+            </div>
+      </div>  
+        <div class="row mt-4">
+            <div class="col-sm-12"><h3>({{item.symbol}}) {{item.title}}</h3></div>
+            <div class="col-sm-12 col-lg-4">
+                <table class="table mt-2 " style="text-align:center; vertical-align: middle; margin: 0px auto; width: 300px;">
+                    <tr>
+                        <td style="vertical-align: middle;" >cимвол: </td>
+                        <td style="vertical-align: middle;"><h3>{{item.symbol}}</h3></td>
+                    </tr>
+                    <tr>
+                        <td> номер:</td>
+                        <td style="vertical-align: middle;">{{item.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>название:</td>
+                        <td>{{item.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>на русском:</td>
+                        <td>{{item.title}}</td>
+                    </tr>
+                    <tr>
+                        <td>группа:</td>
+                        <td>{{(item.group == 100) ? 'NN' : item.group}}</td>
+                    </tr>
+                    <tr>
+                        <td>периоды:</td>
+                        <td>({{item.period.length}}): <i *ngFor="let p of item.period">{{p}} </i></td>
+                        
+                    </tr>
+                    <tr>
+                        <td>вес ядра:</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                    <tr *ngIf="item.lantanoid">
+                        <td colspan="2">{{(item.lantanoid == 1) ? 'Лантаноид' : 'Актаноид'}}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="col-sm-12 col-lg-8">
+                <small class="text-secondary " align="left">Дополнительная(энциклопедическая) информация:</small>
+                <p class="mt-2" style="text-align:justify;">{{itemContent.content}}</p>
+                <p>
+                    <img *ngFor="let img of itemContent.images" [src]="img" width="300">
+                </p>
+            </div>
+        </div>
+    

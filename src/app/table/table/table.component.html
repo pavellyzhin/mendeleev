@@ -1,0 +1,189 @@
+<a routerLink="/" class="btn btn-info mt-4">назад</a> <button class="btn btn-info  mt-4 ml-2" (click)="tbl()">таблица</button><button class="btn btn-info mt-4 ml-2" (click)="list()">элементы списком</button>
+<table *ngIf="tableTrue" class="table mt-4" style="min-width: 900px;">
+    <thead class="alert">
+    <tr><td rowspan="2" style="line-height: 70px; " class="border-right">Периоды</td><td colspan="8" align="center"> Группы Элементов</td>
+    <tr  class="border-bottom">
+        <td  class="border-right">
+        <div class="row">
+            <div class="col-sm-4 text-secondary" align="left" >A</div>
+            <div class="col-sm-4" align="center">I</div>
+            <div class="col-sm-4 text-secondary" align="right">B</div>
+        </div>
+        </td >
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">II</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">III</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">IV</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">V</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">VI</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">VII</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+        <td  class="border-right">
+            <div class="row">
+                <div class="col-sm-4 text-secondary" align="left">A</div>
+                <div class="col-sm-4" align="center">VIII</div>
+                <div class="col-sm-4 text-secondary" align="right">B</div>
+            </div>
+        </td>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let item of table; let i = index;">
+        <td  class="border-right" align="center" style="vertical-align: middle;">{{i+1}}</td>
+        <td *ngFor="let it of item; let e = index"  class="border-right" >
+            
+            <table class="table">
+                <tr>
+                    <td *ngFor="let t of it[0]; let ind = index;" class="border-bottom border-right col-sm-12" [ngStyle]="{'text-align':(t.ab) ? 'right' : 'left','background-color':(t.type == 'metal') ? '#DDD' : 'white'}">
+                        <a [routerLink]="'/t/'+t.id">{{t.symbol}}</a><br>
+                        <small class="text-secondary">{{t.name}}</small><br>
+                        <small class="text-secondary">{{t.title}}</small>
+                        
+                        <div class="position-absolute" *ngIf="!t.ab" style="top: 5px; right: 10px;">{{t.id}}</div>
+                        <div class="position-absolute" *ngIf="t.ab" style="top: 5px; left: 10px;">{{t.id}}</div>
+                    </td>
+                </tr>
+                <tr *ngIf="it[1].length">
+                    <td *ngFor="let t of it[1]; let ind = index;" class="border-bottom col-sm-12" [ngStyle]="{'text-align':(t.ab) ? 'right' : 'left'}">
+                        <a [routerLink]="'/t/'+t.id">{{t.symbol}}</a><br>
+                        <small class="text-secondary">{{t.name}}</small><br>
+                        <small class="text-secondary">{{t.title}}</small>
+                        
+                        <div class="position-absolute" *ngIf="!t.ab" style="top: 5px; right: 10px;">{{t.id}}</div>
+                        <div class="position-absolute" *ngIf="t.ab" style="top: 5px; left: 10px;">{{t.id}}</div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>Лантаноиды*</td>
+        <td colspan="8">
+            <table class="table">
+                <tr>
+                    <td *ngFor="let t of lanta" class="border-bottom col-sm-12" [ngStyle]="{'text-align':(t.ab) ? 'right' : 'left'}">
+                        <a [routerLink]="'/t/'+t.id">{{t.symbol}}</a><br>
+                        <small class="text-secondary">{{t.name}}</small><br>
+                        <small class="text-secondary">{{t.title}}</small>
+                        
+                        <div class="position-absolute" *ngIf="!t.ab" style="top: 5px; right: 10px;">{{t.id}}</div>
+                        <div class="position-absolute" *ngIf="t.ab" style="top: 5px; left: 10px;">{{t.id}}</div> 
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>Актиноиды**</td>
+        <td colspan="8">
+            <table class="table">
+                <tr>
+                    <td *ngFor="let t of acti" class="border-bottom col-sm-12" [ngStyle]="{'text-align':(t.ab) ? 'right' : 'left'}">
+                        <a [routerLink]="'/t/'+t.id">{{t.symbol}}</a><br>
+                        <small class="text-secondary">{{t.name}}</small><br>
+                        <small class="text-secondary">{{t.title}}</small>
+                        
+                        <div class="position-absolute" *ngIf="!t.ab" style="top: 5px; right: 10px;">{{t.id}}</div>
+                        <div class="position-absolute" *ngIf="t.ab" style="top: 5px; left: 10px;">{{t.id}}</div> 
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+
+
+<!--      ----------------------------------------------------------------------      -->
+
+<div *ngIf="listTrue" class="row mt-4">
+    <div class="col-sm-12 col-lg-4 col-md-4" *ngFor="let item of items">
+        <table class="table ">
+            <tr >
+                <td *ngIf="!item.ab" [ngStyle]="{'text-align':(item.ab) ? 'right' : 'left'}">
+                    <table align="left" class="table mt-2" > 
+                        <tr>
+                            <td rowspan="2" class="col-sm-3" style="max-width: 40%;font-size: 30px; text-align:center; vertical-align:middle;border:none;">
+                                <a [routerLink]="'/t/'+item.id">{{item.symbol}}</a>
+                            </td>
+                            <td class="col-sm-9">{{item.name}}<br>
+                                <small>{{item.title}}</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-9">
+                                <small>группа: {{item.group}}</small><br>
+                                <small> вес ядра: {{item.weight}} </small>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="position-absolute  p-1" style="top: 20px;left:50px;"><h4>{{item.id}}</h4></div>
+                    <ul class="position-absolute" style="list-style: none; top: 25px; right: 20px;">
+                        <li><small>({{item.period.length}})</small></li>
+                        <li *ngFor="let p of item.period" style="line-height: 10px;" align="center"><small ><small>{{p}}</small></small></li>
+                    </ul>
+                </td>
+                <td *ngIf="item.ab" [ngStyle]="{'text-align':(item.ab) ? 'right' : 'left'}" class="col-sm-12">
+                    <table align="right" class="table mt-2" style="width: 100%;" > 
+                        <tr>
+                            <td >{{item.name}}<br>
+                                <small>{{item.title}}</small>
+                            </td>
+                            <td rowspan="2"  style="width: 40%;font-size: 30px; text-align:center; vertical-align:middle;border:none;">
+                                <a [routerLink]="'/t/'+item.id">{{item.symbol}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <small>группа: {{item.group}}</small><br>
+                                <small> вес ядра: {{item.weight}} </small>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="position-absolute p-1" style="top: 20px;right:25px;"><h4>{{item.id}}</h4></div>
+                    <ul class="position-absolute" style="list-style: none; top: 25px; left: -25px;">
+                        <li><small>({{item.period.length}})</small></li>
+                        <li *ngFor="let p of item.period" style="line-height: 10px;" align="center"><small ><small>{{p}}</small></small></li>
+                    </ul>
+            </td>
+        
+            </tr>
+        </table>
+    </div>
+
+</div>
